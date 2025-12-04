@@ -10,82 +10,17 @@
   >
   <link href="/css/app.css" rel="stylesheet">
   <style>
-    body { background-color: #0f172a; color: #e5e7eb; }
-    .app-shell { min-height: 100vh; display:flex; flex-direction:column; }
-    .app-header { backdrop-filter: blur(8px); background:rgba(15,23,42,.9); border-bottom:1px solid #1f2937; }
+    body { background-color:#0f172a; color:#e5e7eb; }
+    .app-shell { min-height:100vh; display:flex; flex-direction:column; }
+    .app-header { backdrop-filter:blur(8px); background:rgba(15,23,42,.9); border-bottom:1px solid #1f2937; }
     .app-logo { font-weight:700; letter-spacing:.04em; font-size:1.1rem; text-transform:uppercase; }
-    .sidebar { border-right:1px solid #1f2937; }
-    .sidebar-card,.main-card { background:#020617; border-radius:1rem; border:1px solid #1f2937; }
+    .card-dark { background:#020617; border-radius:1rem; border:1px solid #1f2937; }
+    .stat-value { font-size:1.6rem; font-weight:600; }
+    .stat-label { font-size:.85rem; color:#9ca3af; }
+    .table thead tr { border-color: #1f2937; }
+    .table > :not(caption) > * > * { background-color: transparent; border-color: #1f2937; color: #e5e7eb; vertical-align: middle;}
 
-    .badge-priority-low { background:#16a34a; }
-    .badge-priority-medium { background:#f59e0b; }
-    .badge-priority-high { background:#dc2626; }
-
-    .status-pill { border-radius:999px; padding:.15rem .6rem; font-size:.75rem; }
-    .status-new { background:rgba(56,189,248,.1); color:#38bdf8; }
-    .status-in-progress { background:rgba(249,115,22,.1); color:#f97316; }
-    .status-done { background:rgba(34,197,94,.1); color:#22c55e; }
-
-    .ticket-id { font-family:monospace; font-size:.8rem; color:#9ca3af; }
-    .ticket-meta { font-size:.8rem; color:#9ca3af; }
-    .ticket-title { font-weight:500; }
-
-    .table > :not(caption) > * > * {
-        background:transparent;
-        border-color:#1f2937;
-        color:#e5e7eb;
-        vertical-align:middle;
-    }
-
-    .nav-pills .nav-link { border-radius:999px; }
-    .nav-pills .nav-link.active { background:#4f46e5; }
-
-    /* --- инпуты / селекты / текст --- */
-    .form-label,
-    .sidebar-card,
-    .main-card,
-    .btn,
-    label,
-    th,
-    td {
-        color:#e5e7eb;
-    }
-
-    .form-control,
-    .form-select {
-        background:#020617;
-        border-color:#1f2937;
-        color:#e5e7eb;
-    }
-
-    .form-control::placeholder,
-    .form-select::placeholder {
-        color:#9ca3af;
-        opacity:1;
-    }
-
-    .form-control:focus,
-    .form-select:focus {
-        background:#020617;
-        border-color:#4f46e5;
-        box-shadow:0 0 0 1px #4f46e5;
-        color:#e5e7eb;
-    }
-
-    .form-select option {
-        background:#020617;
-        color:#e5e7eb;
-    }
-
-    .btn-primary { background:#4f46e5; border-color:#4f46e5; }
-    .btn-primary:hover { background:#4338ca; border-color:#4338ca; }
-    .btn-outline-light { border-color:#4b5563; color:#e5e7eb; }
-    .btn-outline-light:hover { background:#111827; border-color:#e5e7eb; }
-
-    @media(max-width:991.98px){
-        .sidebar{border-right:none;border-bottom:1px solid #1f2937;margin-bottom:1rem;}
-    }
-</style>
+  </style>
 </head>
 <body>
 <div class="app-shell">
