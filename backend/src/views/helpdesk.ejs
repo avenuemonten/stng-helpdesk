@@ -79,7 +79,7 @@
                             <select class="form-select form-select-sm">
                                 <option value="">Все</option>
                                 <option value="new">Новый</option>
-                                <option value="in_progress">В работе</option>
+                                <option value="in_work">В работе</option>
                                 <option value="done">Закрыт</option>
                             </select>
                         </div>
@@ -143,16 +143,48 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><div class="ticket-id">#TCK-1024</div></td>
-                                        <td>
-                                            <div class="ticket-title">Не работает VPN на ноутбуке</div>
-                                            <div class="ticket-meta">Автор: <%= username %> • Отдел: СИТ</div>
-                                        </td>
-                                        <td><span class="badge badge-priority-high">Высокий</span></td>
-                                        <td><span class="status-pill status-in-progress">В работе</span></td>
-                                        <td><div class="ticket-meta">04.12.2025 10:21</div></td>
-                                    </tr>
+                                    <% if (tickets && tickets.length > 0) { %>
+                                      <% tickets.forEach(t => { if (t.author === username) { %>
+                                        <tr>
+                                          <td><div class="ticket-id">#TCK-<%= t.id %></div></td>
+                                          <td>
+                                            <div class="ticket-title"><%= t.title %></div>
+                                            <div class="ticket-meta">
+                                              Категория: <%= t.category_name || '—' %>
+                                            </div>
+                                          </td>
+                                          <td>
+                                            <% if (t.priority === 'high') { %>
+                                              <span class="badge badge-priority-high">Высокий</span>
+                                            <% } else if (t.priority === 'low') { %>
+                                              <span class="badge badge-priority-low">Низкий</span>
+                                            <% } else { %>
+                                              <span class="badge badge-priority-medium">Средний</span>
+                                            <% } %>
+                                          </td>
+                                          <td>
+                                            <% if (t.status === 'new') { %>
+                                              <span class="status-pill status-new">Новый</span>
+                                            <% } else if (t.status === 'in_work') { %>
+                                              <span class="status-pill status-in-progress">В работе</span>
+                                            <% } else if (t.status === 'done') { %>
+                                              <span class="status-pill status-done">Решён</span>
+                                            <% } else { %>
+                                              <span class="status-pill status-in-progress">Закрыт</span>
+                                            <% } %>
+                                          </td>
+                                          <td>
+                                            <div class="ticket-meta">
+                                              <%= t.created_at.toISOString().slice(0,16).replace('T',' ') %>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      <% } }); %>
+                                    <% } else { %>
+                                      <tr>
+                                        <td colspan="5" class="text-center text-secondary">Тикетов пока нет</td>
+                                      </tr>
+                                    <% } %>
                                     </tbody>
                                 </table>
                             </div>
@@ -169,17 +201,49 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><div class="ticket-id">#TCK-1030</div></td>
-                                        <td>
-                                            <div class="ticket-title">Не открывается 1С</div>
-                                            <div class="ticket-meta">Офис: Якутск</div>
-                                        </td>
-                                        <td><div class="ticket-meta">Ivanov_II</div></td>
-                                        <td><span class="badge badge-priority-high">Высокий</span></td>
-                                        <td><span class="status-pill status-new">Новый</span></td>
-                                        <td><div class="ticket-meta">04.12.2025 13:05</div></td>
-                                    </tr>
+                                    <% if (tickets && tickets.length > 0) { %>
+                                      <% tickets.forEach(t => { %>
+                                        <tr>
+                                          <td><div class="ticket-id">#TCK-<%= t.id %></div></td>
+                                          <td>
+                                            <div class="ticket-title"><%= t.title %></div>
+                                            <div class="ticket-meta">
+                                              Категория: <%= t.category_name || '—' %>
+                                            </div>
+                                          </td>
+                                          <td><div class="ticket-meta"><%= t.author %></div></td>
+                                          <td>
+                                            <% if (t.priority === 'high') { %>
+                                              <span class="badge badge-priority-high">Высокий</span>
+                                            <% } else if (t.priority === 'low') { %>
+                                              <span class="badge badge-priority-low">Низкий</span>
+                                            <% } else { %>
+                                              <span class="badge badge-priority-medium">Средний</span>
+                                            <% } %>
+                                          </td>
+                                          <td>
+                                            <% if (t.status === 'new') { %>
+                                              <span class="status-pill status-new">Новый</span>
+                                            <% } else if (t.status === 'in_work') { %>
+                                              <span class="status-pill status-in-progress">В работе</span>
+                                            <% } else if (t.status === 'done') { %>
+                                              <span class="status-pill status-done">Решён</span>
+                                            <% } else { %>
+                                              <span class="status-pill status-in-progress">Закрыт</span>
+                                            <% } %>
+                                          </td>
+                                          <td>
+                                            <div class="ticket-meta">
+                                              <%= t.created_at.toISOString().slice(0,16).replace('T',' ') %>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      <% }); %>
+                                    <% } else { %>
+                                      <tr>
+                                        <td colspan="6" class="text-center text-secondary">Тикетов пока нет</td>
+                                      </tr>
+                                    <% } %>
                                     </tbody>
                                 </table>
                             </div>
@@ -188,14 +252,15 @@
                         <!-- TAB: Создать -->
                         <div id="tab-create" class="tab-pane-custom d-none">
                             <h5 class="mb-3">Создать тикет</h5>
-                            <form>
+                            <form method="post" action="/tickets">
                                 <div class="mb-3">
                                     <label class="form-label">Тема</label>
-                                    <input type="text" class="form-control" placeholder="Например: Не работает принтер в кабинете 305">
+                                    <input type="text" class="form-control" name="title"
+                                           placeholder="Например: Не работает принтер в кабинете 305" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Приоритет</label>
-                                    <select class="form-select">
+                                    <select class="form-select" name="priority">
                                         <option value="medium">Средний</option>
                                         <option value="low">Низкий</option>
                                         <option value="high">Высокий</option>
@@ -203,17 +268,18 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Описание</label>
-                                    <textarea class="form-control" rows="4" placeholder="Опиши проблему: когда началось, на каком ПК, что уже пробовал делать."></textarea>
+                                    <textarea class="form-control" rows="4" name="description"
+                                              placeholder="Опиши проблему: когда началось, на каком ПК, что уже пробовал делать."></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Категория</label>
-                                    <select class="form-select">
+                                    <select class="form-select" name="category_id">
                                         <option value="">Выбрать...</option>
-                                        <option value="hardware">Оборудование</option>
-                                        <option value="network">Сеть / VPN</option>
-                                        <option value="software">Программы</option>
-                                        <option value="access">Доступы</option>
-                                        <option value="other">Другое</option>
+                                        <% if (categories && categories.length > 0) { %>
+                                          <% categories.forEach(c => { %>
+                                            <option value="<%= c.id %>"><%= c.name %></option>
+                                          <% }); %>
+                                        <% } %>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Отправить тикет</button>
