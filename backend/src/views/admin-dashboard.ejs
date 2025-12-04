@@ -9,57 +9,15 @@
     rel="stylesheet"
   >
   <style>
-/* ================================
-   Глобальная фиксация белого текста
-================================= */
-body, h1, h2, h3, h4, h5, h6, p, label, span, div, td, th {
-    color: #e5e7eb !important;
-}
-
-/* Input + Select */
-.form-control, 
-.form-select {
-    color: #e5e7eb !important;
-}
-
-/* Placeholder — тоже белый */
-.form-control::placeholder,
-.form-select::placeholder {
-    color: #9ca3af !important;
-    opacity: 1;
-}
-
-/* Опции select в выпадающем списке */
-.form-select option {
-    background: #020617 !important;
-    color: #e5e7eb !important;
-}
-
-/* Таблицы */
-.table td, 
-.table th {
-    color: #e5e7eb !important;
-}
-
-/* Подписи, мелкий текст */
-.ticket-meta,
-.ticket-id {
-    color: #9ca3af !important;
-}
-
-/* Hover для select */
-.form-select:focus {
-    border-color: #4f46e5 !important;
-    box-shadow: 0 0 0 1px #4f46e5 !important;
-}
-
-/* Поля ввода в admin/categories */
-input, select, textarea {
-    color: #e5e7eb !important;
-    background: #020617 !important;
-    border-color: #1f2937 !important;
-}
-
+    body { background-color:#0f172a; color:#e5e7eb; }
+    .app-shell { min-height:100vh; display:flex; flex-direction:column; }
+    .app-header { backdrop-filter:blur(8px); background:rgba(15,23,42,.9); border-bottom:1px solid #1f2937; }
+    .app-logo { font-weight:700; letter-spacing:.04em; font-size:1.1rem; text-transform:uppercase; }
+    .card-dark { background:#020617; border-radius:1rem; border:1px solid #1f2937; }
+    .stat-value { font-size:1.6rem; font-weight:600; }
+    .stat-label { font-size:.85rem; color:#9ca3af; }
+    .table thead tr { border-color: #1f2937; }
+    .table > :not(caption) > * > * { background-color: transparent; border-color: #1f2937; color: #e5e7eb; vertical-align: middle;}
 
   </style>
 </head>
