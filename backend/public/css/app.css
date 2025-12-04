@@ -1,0 +1,109 @@
+/* =========================
+   Общая тема — тёмная (app.css)
+   Подключать ПОСЛЕ Bootstrap
+   ========================= */
+
+/* базовые цвета */
+:root{
+  --bg:#0f172a;
+  --panel:#020617;
+  --border:#1f2937;
+  --muted:#9ca3af;
+  --text:#e5e7eb;
+  --accent:#4f46e5;
+  --accent-hover:#4338ca;
+}
+
+/* общий фон/текст */
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* шапка / панель */
+.app-header {
+  backdrop-filter: blur(8px);
+  background: rgba(15,23,42,.9);
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* карточки и панели */
+.sidebar-card,
+.main-card,
+.sidebar,
+.table,
+.form-control,
+.form-select,
+textarea {
+  background: var(--panel) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* таблицы */
+.table th, .table td {
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+.table > :not(caption) > * > * { background: transparent !important; }
+
+/* формы / placeholder */
+.form-control,
+.form-select {
+  background: var(--panel) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+.form-control::placeholder,
+.form-select::placeholder { color: var(--muted) !important; opacity:1; }
+
+/* options в select */
+.form-select option {
+  background: var(--panel) !important;
+  color: var(--text) !important;
+}
+
+/* фокус */
+.form-control:focus,
+.form-select:focus {
+  background: var(--panel) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 1px var(--accent) !important;
+  color: var(--text) !important;
+}
+
+/* nav/pills */
+.nav-pills .nav-link { border-radius:999px; }
+.nav-pills .nav-link.active { background: var(--accent) !important; color:#fff !important; }
+
+/* кнопки */
+.btn-primary { background: var(--accent) !important; border-color: var(--accent) !important; color:#fff; }
+.btn-primary:hover { background: var(--accent-hover) !important; border-color: var(--accent-hover) !important; }
+
+/* мета-тексты */
+.ticket-meta, .ticket-id { color: var(--muted) !important; }
+
+/* статус/приоритет */
+.badge-priority-low { background:#16a34a !important; color:#fff; }
+.badge-priority-medium { background:#f59e0b !important; color:#000; }
+.badge-priority-high { background:#dc2626 !important; color:#fff; }
+
+.status-pill { border-radius:999px; padding:.15rem .6rem; font-size:.78rem; }
+.status-new { background: rgba(56,189,248,.1); color:#38bdf8; }
+.status-in-progress { background: rgba(249,115,22,.1); color:#f97316; }
+.status-done { background: rgba(34,197,94,.1); color:#22c55e; }
+
+/* мелкие элементы */
+label, h1,h2,h3,h4,h5,h6, p, small { color: var(--text) !important; }
+
+/* безопасные переопределения (если где-то всё ещё белое) */
+input, select, textarea, option, td, th, a, button, span, div {
+  color: inherit !important;
+}
+
+/* адаптив */
+@media (max-width:991.98px) {
+  .sidebar { border-right: none; border-bottom: 1px solid var(--border); margin-bottom: 1rem; }
+}
