@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>СТНГ Service Desk – Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <style>
+    body { background-color:#0f172a; color:#e5e7eb; }
+    .app-shell { min-height:100vh; display:flex; flex-direction:column; }
+    .app-header { backdrop-filter:blur(8px); background:rgba(15,23,42,.9); border-bottom:1px solid #1f2937; }
+    .app-logo { font-weight:700; letter-spacing:.04em; font-size:1.1rem; text-transform:uppercase; }
+    .card-dark { background:#020617; border-radius:1rem; border:1px solid #1f2937; }
+    .stat-value { font-size:1.6rem; font-weight:600; }
+    .stat-label { font-size:.85rem; color:#9ca3af; }
+    .table thead tr { border-color: #1f2937; }
+    .table > :not(caption) > * > * { background-color: transparent; border-color: #1f2937; color: #e5e7eb; vertical-align: middle;}
+
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="app-header py-2 px-3">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <div class="app-logo">СТНГ • Service Desk</div>
+          <span class="badge rounded-pill text-bg-dark border border-secondary">Admin</span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="text-end">
+            <div style="font-size:0.9rem;"><%= username %></div>
+            <div style="font-size:0.75rem;color:#9ca3af;">Роль: <%= role %></div>
+          </div>
+          <a href="/" class="btn btn-outline-light btn-sm">К пользователю</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow-1 py-3">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Dashboard</h4>
+        <a href="/admin/categories" class="btn btn-primary btn-sm">
+          Настройки категорий
+        </a>
+      </div>
+
+      <!-- Статистика -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-3">
+          <div class="card-dark p-3">
+            <div class="stat-label">Всего тикетов</div>
+            <div class="stat-value">128</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-dark p-3">
+            <div class="stat-label">Новые</div>
+            <div class="stat-value text-info">14</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-dark p-3">
+            <div class="stat-label">В работе</div>
+            <div class="stat-value text-warning">23</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-dark p-3">
+            <div class="stat-label">Просроченные</div>
+            <div class="stat-value text-danger">5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Последние тикеты -->
+      <div class="card-dark p-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="mb-0">Последние тикеты</h6>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm align-middle">
+            <thead>
+            <tr>
+              <th>ID</th><th>Тема</th><th>Автор</th><th>Статус</th><th>Приоритет</th><th>Создан</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><span class="text-secondary">#TCK-1031</span></td>
+              <td>Не работает почта Outlook</td>
+              <td>Petrova_MN</td>
+              <td><span class="badge text-bg-info">Новый</span></td>
+              <td><span class="badge text-bg-danger">Высокий</span></td>
+              <td>04.12.2025 14:20</td>
+            </tr>
+            <tr>
+              <td><span class="text-secondary">#TCK-1030</span></td>
+              <td>Не открывается 1С</td>
+              <td>Ivanov_II</td>
+              <td><span class="badge text-bg-warning">В работе</span></td>
+              <td><span class="badge text-bg-warning">Средний</span></td>
+              <td>04.12.2025 13:05</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>
